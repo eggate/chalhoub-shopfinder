@@ -1,6 +1,6 @@
 {
     "name": "eggate/chalhoub-shopfinder",
-    "description": "N/A",
+    "description": "Shopfinder module allows you to add shops to your magento2 store",
     "type": "magento2-module",
     "license": [
         "proprietary"
@@ -15,6 +15,9 @@
         "sort-packages": true
     },
     "version": "1.0.0",
+    
+    "minimum-stability": "beta",
+    "prefer-stable": true,
     "require": {
         "magento/framework": "103.0.*",
         "php": "~7.4.0||~8.1.0"
