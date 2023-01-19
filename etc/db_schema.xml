@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="chalhoub_shop" resource="default" engine="innodb" comment="Chalhoub shop table">
+        <column xsi:type="int" name="shop_id" padding="11" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255"/>
+        <column xsi:type="varchar" name="identifier" nullable="false" length="255"/>
+        <column xsi:type="varchar" name="country_id" nullable="false" length="255"/>
+        <column xsi:type="varchar" name="image" nullable="false" length="255"/>
+        <column xsi:type="varchar" name="longitude" nullable="true" length="255"/>
+        <column xsi:type="varchar" name="latitude" nullable="true" length="255"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="shop_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="CHALHOUB_SHOP_IDENTIFIER">
+            <column name="identifier" />
+        </constraint>
+        <index referenceId="CHALHOUB_SHOP_SHOP_ID" indexType="btree">
+            <column name="shop_id"/>
+        </index>
+    </table>
+</schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <route url="/V1/shopfinder" method="GET">
+        <service class="Chalhoub\Shopfinder\Api\ShopRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Backend::admin"/>
+        </resources>
+    </route>
+    <route url="/V1/shopfinder" method="POST">
+        <service class="Chalhoub\Shopfinder\Api\ShopRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Backend::admin"/>
+        </resources>
+    </route>
+    <route url="/V1/shopfinder/:shopId" method="GET">
+        <service class="Chalhoub\Shopfinder\Api\ShopRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Magento_Backend::admin"/>
+        </resources>
+    </route>
+    <route url="/V1/shopfinder/:shopId" method="DELETE">
+        <service class="Chalhoub\Shopfinder\Api\ShopRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Magento_Backend::admin"/>
+        </resources>
+    </route>
+</routes>

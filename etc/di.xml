@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * di
+ *
+ * @copyright Copyright © 2023 Ushop Unilever. All rights reserved.
+ * @author    ahmed.allam@unilever.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Chalhoub\Shopfinder\Api\Data\ShopInterface" type="Chalhoub\Shopfinder\Model\Shop"/>
+    <preference for="Chalhoub\Shopfinder\Api\ShopRepositoryInterface" type="Chalhoub\Shopfinder\Model\ShopRepository"/>
+    <preference for="Chalhoub\Shopfinder\Api\Data\ShopSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="shopfinder_shops_listing_data_source" xsi:type="string">Chalhoub\Shopfinder\Model\ResourceModel\Shop\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Chalhoub\Shopfinder\Model\ResourceModel\Shop\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">chalhoub_shop</argument>
+            <argument name="eventPrefix" xsi:type="string">chalhoub_shopfinder_shop_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">chalhoub_shopfinder_shop_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Chalhoub\Shopfinder\Model\ResourceModel\Shop</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Chalhoub\Shopfinder\Model\Image\Processor" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">shopfinder/images</argument>
+            <argument name="basePath" xsi:type="string">shopfinder/images</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Chalhoub\Shopfinder\Controller\Adminhtml\Shops\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Chalhoub\Shopfinder\Model\Image\Processor</argument>
+        </arguments>
+    </type>
+</config>
